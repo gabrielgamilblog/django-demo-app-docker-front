@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+  myapp:
+    image: myapp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - myappfrontend
+    ports:
+      - 8000:8000
+
+  myappfrontend:
+    image: myappfrontend
+    build:
+      context: .
+      dockerfile: ./DockerFileFrontApp
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
